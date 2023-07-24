@@ -1,6 +1,9 @@
 let myParagraph = document.querySelector("#myParagraph");
-//Remove All new Lines,return, and . from our paragraph
-const sanitizedParagraph = myParagraph.textContent.replace(/[\r\n.]+/g, "");
+//Remove All new Lines,return, and [.!?'"] from our paragraph
+const sanitizedParagraph = myParagraph.textContent.replace(
+  /[\r\n.!?'"]+/g,
+  " "
+);
 const splitedParagraph = sanitizedParagraph.split(" ");
 
 const wordWithCout = splitedParagraph.reduce((acc, word) => {
