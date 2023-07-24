@@ -8,3 +8,12 @@ const wordWithCout = splitedParagraph.reduce((acc, word) => {
   acc[wordLowerCase] = acc[wordLowerCase] + 1 || 1;
   return acc;
 }, {});
+
+// Convert the words to array so that i can sort them in Descending order
+const sortedWordWithCount = Object.entries(wordWithCout);
+sortedWordWithCount.sort((a, b) => b[1] - a[1]);
+
+// Get the actual words from our paragraph aray of array
+const actualWords = sortedWordWithCount.filter((word) => {
+  return word[0].length >= 1;
+});
