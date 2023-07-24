@@ -21,10 +21,16 @@ const actualWords = sortedWordWithCount.filter((word) => {
 // Get the first 5 Repeated words
 const firstFive = Object.fromEntries(actualWords.splice(0, 5));
 // Keys of all words that are mostly repeated.
-
+console.log(firstFive);
 let text = myParagraph.textContent;
 Object.keys(firstFive).forEach((word) => {
-  let exp = new RegExp(`${word}[?." ',]`, "g");
-  text = text.replace(exp, `<mark>${word}</mark> `);
+  let UpperCaseWord = word[0].toUpperCase() + word.slice(1);
+  let expLow = new RegExp(`${word}[?." ',]`, "g");
+  let expUp = new RegExp(`${UpperCaseWord}[?." ',]`, "g");
+  text = text.replace(expLow, `<mark>${word}</mark> `);
+  text = text.replace(
+    expUp,
+    `<mark style="text-decoration:underline;">${UpperCaseWord}</mark> `
+  );
 });
 myParagraph.innerHTML = text;
