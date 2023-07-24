@@ -1,6 +1,6 @@
 const secondButtons = document.querySelector("#myTimer");
 const display = document.querySelector("[data-display]");
-const reset = document.querySelector("[data-button-reset]");
+const startButton = document.querySelector("[data-button-start]");
 // const start = document.querySelector("[]");
 let stopwatch = 0;
 let secCounter = "";
@@ -21,8 +21,17 @@ secondButtons.addEventListener("click", (e) => {
   }
   //Start
   if (e.target.matches("[data-button-start]")) {
-    stopWatchRunning = true;
-    secCounter = setInterval(coundDown, 1000);
+    if (!stopWatchRunning) {
+      // Stop Watch is not running start the count down and allow uset to stop it
+      stopWatchRunning = true;
+      secCounter = setInterval(coundDown, 1000);
+      startButton.textContent = "Stop";
+    } else {
+      // running, allow user to top the timer.
+      stopWatchRunning = false;
+      clearInterval(secCounter); // Clear the current Interval
+      startButton.textContent = "Start";
+    }
   }
 });
 // Function to add and remove seconds
@@ -50,5 +59,6 @@ function coundDown() {
   } else {
     clearInterval(secCounter);
     stopWatchRunning = false; // You can run the timer again
+    startButton.textContent = "Start";
   }
 }
