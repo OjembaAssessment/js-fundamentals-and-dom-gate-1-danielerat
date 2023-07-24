@@ -1,15 +1,16 @@
-const secondButtons = document.querySelector("#myTimer");
+const controlButtons = document.querySelector("#myTimer");
 const display = document.querySelector("[data-display]");
 const addSecond = document.querySelector("[data-time-add]");
 const removeSecond = document.querySelector("[data-time-remove]");
 
 const resetButton = document.querySelector("[data-button-reset]");
 const startButton = document.querySelector("[data-button-start]");
-// const start = document.querySelector("[]");
+// keeps track of the seconds
 let stopwatch = 0;
-let secCounter = "";
+//Holds our setInterval function
+let secCounter = null;
 let stopWatchRunning = false;
-secondButtons.addEventListener("click", (e) => {
+controlButtons.addEventListener("click", (e) => {
   //   Add Second
   if (e.target.matches("[data-time-add]") && !stopWatchRunning) {
     addOrRemoveSeconds(true);
@@ -52,14 +53,13 @@ function addOrRemoveSeconds(state) {
     }
   }
 }
-// Function to update the ui
 
+// Function to update the ui
 function updateUi() {
   display.textContent = `${stopwatch}s`;
 }
 
 function coundDown() {
-  console.log("down");
   if (stopwatch > 0) {
     addOrRemoveSeconds(false);
   } else {
@@ -70,6 +70,7 @@ function coundDown() {
   }
 }
 
+// Make The ui friendly by marking the buttons disabled
 function disableButtonsUi(state) {
   if (state) {
     addSecond.classList.add("disabled-btn");
