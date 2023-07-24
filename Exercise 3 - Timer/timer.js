@@ -1,5 +1,9 @@
 const secondButtons = document.querySelector("#myTimer");
 const display = document.querySelector("[data-display]");
+const addSecond = document.querySelector("[data-time-add]");
+const removeSecond = document.querySelector("[data-time-remove]");
+
+const resetButton = document.querySelector("[data-button-reset]");
 const startButton = document.querySelector("[data-button-start]");
 // const start = document.querySelector("[]");
 let stopwatch = 0;
@@ -26,11 +30,13 @@ secondButtons.addEventListener("click", (e) => {
       stopWatchRunning = true;
       secCounter = setInterval(coundDown, 1000);
       startButton.textContent = "Stop";
+      disableButtonsUi(true);
     } else {
       // running, allow user to top the timer.
       stopWatchRunning = false;
       clearInterval(secCounter); // Clear the current Interval
       startButton.textContent = "Start";
+      disableButtonsUi(false);
     }
   }
 });
@@ -60,5 +66,18 @@ function coundDown() {
     clearInterval(secCounter);
     stopWatchRunning = false; // You can run the timer again
     startButton.textContent = "Start";
+    disableButtonsUi(false);
+  }
+}
+
+function disableButtonsUi(state) {
+  if (state) {
+    addSecond.classList.add("disabled-btn");
+    removeSecond.classList.add("disabled-btn");
+    resetButton.classList.add("disabled-btn");
+  } else {
+    addSecond.classList.remove("disabled-btn");
+    removeSecond.classList.remove("disabled-btn");
+    resetButton.classList.remove("disabled-btn");
   }
 }

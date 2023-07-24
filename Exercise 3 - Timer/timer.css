@@ -1,3 +1,10 @@
+#myTimer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
 #myTimer > div {
   display: flex;
   align-items: center;
@@ -5,10 +12,40 @@
   font-size: 65px;
 }
 .cnt {
-  border: 1px solid red;
+  border: 3px solid rgb(34, 32, 53);
   width: 300px;
   height: 100px;
+  background-color: azure;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#myTimer div:first-child button {
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: azure;
+  cursor: pointer;
+}
+
+#myTimer div:last-child {
+  display: flex;
+  gap: 100px;
+}
+#myTimer div:last-child button {
+  padding: 10px 30px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: azure;
+  cursor: pointer;
+}
+
+.disabled-btn {
+  background-color: rgb(134, 151, 151) !important;
+  cursor: not-allowed !important;
 }
